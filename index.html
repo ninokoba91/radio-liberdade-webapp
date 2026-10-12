@@ -11,67 +11,67 @@
 <style>
   body { font-family: 'Inter', sans-serif; }
   .font-display { font-family: 'Space Grotesk', sans-serif; }
-  .tab-btn.active { color: #3b82f6; border-color: #ef4444; }
+  .tab-btn.active { color: #1d4ed8; border-color: #dc2626; }
   .tab-panel { display: none; }
   .tab-panel.active { display: block; }
   .skeleton { animation: pulse 1.4s ease-in-out infinite; }
   @keyframes pulse { 0%,100%{opacity:.4} 50%{opacity:.8} }
 </style>
 </head>
-<!-- Tema sesuai logo RL: hitam, biru royal, merah, biru langit muda, putih -->
-<body class="bg-black text-sky-50 min-h-screen">
+<!-- Tema terang sesuai logo RL: putih/biru langit muda, teks hitam, aksen biru royal & merah -->
+<body class="bg-sky-50 text-slate-900 min-h-screen">
 
-<div class="sticky top-0 z-20 backdrop-blur-md bg-black/90 border-b border-sky-500/10">
+<div class="sticky top-0 z-20 backdrop-blur-md bg-white/90 border-b border-slate-200 shadow-sm">
   <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
     <div class="font-display text-lg md:text-xl font-bold flex items-center gap-2">
-      <i class="fa-solid fa-tower-broadcast text-red-500"></i>
-      <span class="text-blue-400">Radio</span> <span class="text-red-500">Liberdade</span> <span class="text-sky-200">Dili</span>
+      <i class="fa-solid fa-tower-broadcast text-red-600"></i>
+      <span class="text-blue-700">Radio</span> <span class="text-red-600">Liberdade</span> <span class="text-slate-900">Dili</span>
     </div>
-    <span class="text-xs text-sky-200 border border-blue-400/30 rounded-full px-3 py-1 flex items-center gap-1.5 bg-blue-500/10">
-      <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>FM 95,8 Mhz
+    <span class="text-xs text-slate-700 border border-blue-300 rounded-full px-3 py-1 flex items-center gap-1.5 bg-sky-100">
+      <span class="w-2 h-2 rounded-full bg-red-600 animate-pulse"></span>FM 95,8 Mhz
     </span>
   </div>
 </div>
 
-<section class="relative overflow-hidden px-6 pt-14 pb-10 text-center" style="background: radial-gradient(ellipse at top, #0a1a2e 0%, #000000 65%);">
-  <div class="absolute -right-10 -bottom-20 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
-  <div class="absolute -left-10 -top-10 w-72 h-72 bg-red-500/10 rounded-full blur-3xl pointer-events-none"></div>
-  <span class="relative inline-block px-3 py-1 mb-4 text-xs font-bold uppercase tracking-wider text-sky-200 bg-sky-400/10 rounded-md border border-sky-400/20">Rádiu Komunidade · Dili, Timor-Leste</span>
-  <h1 class="relative font-display text-3xl md:text-5xl font-bold tracking-tight">
-    Lian husi <span class="text-blue-400">Povu</span>, ba <span class="text-red-500">Povu</span>.
+<section class="relative overflow-hidden px-6 pt-14 pb-10 text-center" style="background: radial-gradient(ellipse at top, #e0f2fe 0%, #f0f9ff 65%);">
+  <div class="absolute -right-10 -bottom-20 w-96 h-96 bg-blue-200/40 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="absolute -left-10 -top-10 w-72 h-72 bg-red-200/30 rounded-full blur-3xl pointer-events-none"></div>
+  <span class="relative inline-block px-3 py-1 mb-4 text-xs font-bold uppercase tracking-wider text-blue-700 bg-white rounded-md border border-blue-200 shadow-sm">Rádiu Komunidade · Dili, Timor-Leste</span>
+  <h1 class="relative font-display text-3xl md:text-5xl font-bold tracking-tight text-slate-900">
+    Lian husi <span class="text-blue-700">Povu</span>, ba <span class="text-red-600">Povu</span>.
   </h1>
-  <p class="relative text-sky-100/70 max-w-lg mx-auto mt-4">
+  <p class="relative text-slate-600 max-w-lg mx-auto mt-4">
     Notísia, dezenvolvimentu, no istória komunidade — direta husi Dili.
   </p>
 
   <!-- Player -->
-  <div class="relative max-w-md mx-auto mt-8 bg-white/5 border border-sky-400/20 rounded-2xl p-5 flex items-center gap-4 backdrop-blur">
-    <button id="play-btn" class="w-14 h-14 rounded-full bg-gradient-to-br from-blue-500 to-red-500 text-white flex items-center justify-center text-xl shrink-0 hover:opacity-90 transition shadow-lg shadow-blue-500/20">
+  <div class="relative max-w-md mx-auto mt-8 bg-white border border-slate-200 rounded-2xl p-5 flex items-center gap-4 shadow-md">
+    <button id="play-btn" class="w-14 h-14 rounded-full bg-gradient-to-br from-blue-600 to-red-600 text-white flex items-center justify-center text-xl shrink-0 hover:opacity-90 transition shadow-lg shadow-blue-500/20">
       <i class="fa-solid fa-play" id="play-icon"></i>
     </button>
     <div class="text-left flex-1">
-      <div class="font-display font-bold text-white">Dengar Live</div>
-      <div class="text-xs text-sky-200/60" id="player-status">Klik play atu komesa</div>
+      <div class="font-display font-bold text-slate-900">Dengar Live</div>
+      <div class="text-xs text-slate-500" id="player-status">Klik play atu komesa</div>
     </div>
-    <i class="fa-solid fa-volume-high text-sky-300/60"></i>
+    <i class="fa-solid fa-volume-high text-slate-400"></i>
   </div>
-  <p class="relative text-xs text-sky-100/40 mt-3 max-w-md mx-auto">
+  <p class="relative text-xs text-slate-400 mt-3 max-w-md mx-auto">
     ⚠️ URL stream sei kompleta hosi Nino — konfigura iha <code>STREAM_URL</code> script.
   </p>
 </section>
 
 <div class="max-w-5xl mx-auto px-6">
-  <div class="flex gap-6 border-b border-sky-500/10 overflow-x-auto text-sm font-medium">
-    <button class="tab-btn active py-3 border-b-2 border-transparent text-sky-100/60 whitespace-nowrap" data-tab="beranda">
+  <div class="flex gap-6 border-b border-slate-200 overflow-x-auto text-sm font-medium">
+    <button class="tab-btn active py-3 border-b-2 border-transparent text-slate-500 whitespace-nowrap" data-tab="beranda">
       <i class="fa-solid fa-house mr-1.5"></i>Pájina Mestre
     </button>
-    <button class="tab-btn py-3 border-b-2 border-transparent text-sky-100/60 whitespace-nowrap" data-tab="notisia">
+    <button class="tab-btn py-3 border-b-2 border-transparent text-slate-500 whitespace-nowrap" data-tab="notisia">
       <i class="fa-regular fa-newspaper mr-1.5"></i>Notísia
     </button>
-    <button class="tab-btn py-3 border-b-2 border-transparent text-sky-100/60 whitespace-nowrap" data-tab="kategoria">
+    <button class="tab-btn py-3 border-b-2 border-transparent text-slate-500 whitespace-nowrap" data-tab="kategoria">
       <i class="fa-solid fa-layer-group mr-1.5"></i>Kategoria
     </button>
-    <button class="tab-btn py-3 border-b-2 border-transparent text-sky-100/60 whitespace-nowrap" data-tab="kontaktu">
+    <button class="tab-btn py-3 border-b-2 border-transparent text-slate-500 whitespace-nowrap" data-tab="kontaktu">
       <i class="fa-regular fa-envelope mr-1.5"></i>Kontaktu
     </button>
   </div>
@@ -80,41 +80,41 @@
 <main class="max-w-5xl mx-auto px-6 py-10">
 
   <div class="tab-panel active" id="panel-beranda">
-    <h2 class="font-display text-xl font-bold mb-4 text-white">Notísia Foin Loron</h2>
+    <h2 class="font-display text-xl font-bold mb-4 text-slate-900">Notísia Foin Loron</h2>
     <div class="grid md:grid-cols-2 gap-4" id="feed-home">
-      <div class="skeleton h-36 rounded-2xl bg-[#0d1117]"></div>
-      <div class="skeleton h-36 rounded-2xl bg-[#0d1117]"></div>
+      <div class="skeleton h-36 rounded-2xl bg-slate-100"></div>
+      <div class="skeleton h-36 rounded-2xl bg-slate-100"></div>
     </div>
   </div>
 
   <div class="tab-panel" id="panel-notisia">
     <div class="flex items-baseline justify-between mb-4">
-      <h2 class="font-display text-xl font-bold text-white">Hotu-hotu Notísia</h2>
-      <span class="text-xs text-sky-100/40" id="count"></span>
+      <h2 class="font-display text-xl font-bold text-slate-900">Hotu-hotu Notísia</h2>
+      <span class="text-xs text-slate-400" id="count"></span>
     </div>
     <div class="grid md:grid-cols-2 gap-4" id="feed-all">
-      <div class="skeleton h-36 rounded-2xl bg-[#0d1117]"></div>
-      <div class="skeleton h-36 rounded-2xl bg-[#0d1117]"></div>
-      <div class="skeleton h-36 rounded-2xl bg-[#0d1117]"></div>
-      <div class="skeleton h-36 rounded-2xl bg-[#0d1117]"></div>
+      <div class="skeleton h-36 rounded-2xl bg-slate-100"></div>
+      <div class="skeleton h-36 rounded-2xl bg-slate-100"></div>
+      <div class="skeleton h-36 rounded-2xl bg-slate-100"></div>
+      <div class="skeleton h-36 rounded-2xl bg-slate-100"></div>
     </div>
   </div>
 
   <div class="tab-panel" id="panel-kategoria">
-    <h2 class="font-display text-xl font-bold mb-4 text-white">Kategoria</h2>
+    <h2 class="font-display text-xl font-bold mb-4 text-slate-900">Kategoria</h2>
     <div class="flex flex-wrap gap-2" id="categories-list"></div>
   </div>
 
   <div class="tab-panel" id="panel-kontaktu">
-    <h2 class="font-display text-xl font-bold mb-4 text-white">Kontaktu Ami</h2>
-    <div class="bg-[#0d1117] border border-sky-500/10 rounded-2xl p-6 text-sky-100/70 text-sm space-y-2">
-      <p><i class="fa-solid fa-tower-broadcast mr-2 text-red-500"></i>FM 95,8 Mhz — Dili, Timor-Leste</p>
-      <p><i class="fa-solid fa-globe mr-2 text-blue-400"></i><a href="https://radioliberdadedili.com" class="text-sky-300 underline" target="_blank">radioliberdadedili.com</a> (situs orijinál)</p>
+    <h2 class="font-display text-xl font-bold mb-4 text-slate-900">Kontaktu Ami</h2>
+    <div class="bg-white border border-slate-200 rounded-2xl p-6 text-slate-600 text-sm space-y-2 shadow-sm">
+      <p><i class="fa-solid fa-tower-broadcast mr-2 text-red-600"></i>FM 95,8 Mhz — Dili, Timor-Leste</p>
+      <p><i class="fa-solid fa-globe mr-2 text-blue-600"></i><a href="https://radioliberdadedili.com" class="text-blue-700 underline" target="_blank">radioliberdadedili.com</a> (situs orijinál)</p>
     </div>
   </div>
 </main>
 
-<footer class="text-center py-8 text-xs text-sky-100/40 border-t border-sky-500/10">
+<footer class="text-center py-8 text-xs text-slate-400 border-t border-slate-200">
   Radio Liberdade Dili — notísia direta husi WordPress oficial via REST API. Webapp prototype ida — redesign husi LaVenio.
 </footer>
 
@@ -159,10 +159,10 @@ function cardHTML(p) {
   const excerpt = p.excerpt.rendered.replace(/<[^>]+>/g, '').replace('[&hellip;]', '...').trim();
   const date = new Date(p.date).toLocaleDateString('pt-PT', {day:'numeric', month:'long', year:'numeric'});
   return `
-    <a href="${p.link}" target="_blank" class="block bg-[#0d1117] border border-sky-500/10 rounded-2xl p-5 hover:border-blue-500/40 transition">
-      <h3 class="font-display font-bold mb-2 leading-snug text-white">${title}</h3>
-      <p class="text-sm text-sky-100/60">${excerpt}</p>
-      <span class="block mt-3 pt-3 border-t border-dashed border-sky-500/10 text-xs text-sky-100/40">${date}</span>
+    <a href="${p.link}" target="_blank" class="block bg-white border border-slate-200 rounded-2xl p-5 hover:border-blue-400 hover:shadow-md transition shadow-sm">
+      <h3 class="font-display font-bold mb-2 leading-snug text-slate-900">${title}</h3>
+      <p class="text-sm text-slate-500">${excerpt}</p>
+      <span class="block mt-3 pt-3 border-t border-dashed border-slate-200 text-xs text-slate-400">${date}</span>
     </a>`;
 }
 
@@ -183,10 +183,10 @@ async function loadCategories() {
     const res = await fetch(`${WP_API}/categories?per_page=30&_fields=id,name,count&orderby=count&order=desc`);
     const cats = await res.json();
     document.getElementById('categories-list').innerHTML = cats.filter(c => c.count > 0).map(c => `
-      <span class="px-4 py-2 rounded-full bg-[#0d1117] border border-blue-400/20 text-sky-100 text-sm">${c.name} <span class="text-sky-100/40">(${c.count})</span></span>
+      <span class="px-4 py-2 rounded-full bg-white border border-blue-200 text-slate-700 text-sm shadow-sm">${c.name} <span class="text-slate-400">(${c.count})</span></span>
     `).join('');
   } catch (e) {
-    document.getElementById('categories-list').innerHTML = '<p class="text-sky-100/40">La bele hatún kategoria.</p>';
+    document.getElementById('categories-list').innerHTML = '<p class="text-slate-400">La bele hatún kategoria.</p>';
   }
 }
 
