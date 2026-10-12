@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="tet">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Radio Liberdade Dili — FM 95.8</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  body { font-family: 'Inter', sans-serif; }
+  .font-display { font-family: 'Space Grotesk', sans-serif; }
+  .tab-btn.active { color: #fcd116; border-color: #fcd116; }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+  .skeleton { animation: pulse 1.4s ease-in-out infinite; }
+  @keyframes pulse { 0%,100%{opacity:.4} 50%{opacity:.8} }
+</style>
+</head>
+<!-- Tema terinspirasi bendera Timor-Leste: merah tua, kuning, hitam -->
+<body class="bg-[#1a0a0a] text-amber-50 min-h-screen">
+
+<div class="sticky top-0 z-20 backdrop-blur-md bg-[#1a0a0a]/90 border-b border-amber-500/10">
+  <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+    <div class="font-display text-lg md:text-xl font-bold text-amber-300 flex items-center gap-2">
+      <i class="fa-solid fa-tower-broadcast"></i> Radio Liberdade Dili
+    </div>
+    <span class="text-xs text-red-300 border border-red-400/30 rounded-full px-3 py-1 flex items-center gap-1.5">
+      <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>FM 95.8 MHz
+    </span>
+  </div>
+</div>
+
+<section class="relative overflow-hidden px-6 pt-14 pb-10 text-center" style="background: radial-gradient(ellipse at top, #3a0f0f 0%, #1a0a0a 65%);">
+  <div class="absolute -right-10 -bottom-20 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+  <span class="relative inline-block px-3 py-1 mb-4 text-xs font-bold uppercase tracking-wider text-amber-300 bg-amber-500/10 rounded-md border border-amber-500/20">Rádiu Komunidade · Dili, Timor-Leste</span>
+  <h1 class="relative font-display text-3xl md:text-5xl font-bold tracking-tight">
+    Lian husi <span class="text-amber-300">Povu</span>, ba <span class="text-amber-300">Povu</span>.
+  </h1>
+  <p class="relative text-amber-100/70 max-w-lg mx-auto mt-4">
+    Notísia, dezenvolvimentu, no istória komunidade — direta husi Dili.
+  </p>
+
+  <!-- Player -->
+  <div class="relative max-w-md mx-auto mt-8 bg-[#2a1010]/80 border border-amber-500/20 rounded-2xl p-5 flex items-center gap-4">
+    <button id="play-btn" class="w-14 h-14 rounded-full bg-amber-400 text-[#1a0a0a] flex items-center justify-center text-xl shrink-0 hover:bg-amber-300 transition">
+      <i class="fa-solid fa-play" id="play-icon"></i>
+    </button>
+    <div class="text-left flex-1">
+      <div class="font-display font-bold text-amber-200">Dengar Live</div>
+      <div class="text-xs text-amber-100/60" id="player-status">Klik play atu komesa</div>
+    </div>
+    <i class="fa-solid fa-volume-high text-amber-400/60"></i>
+  </div>
+  <p class="relative text-xs text-amber-100/40 mt-3 max-w-md mx-auto">
+    ⚠️ URL stream sei kompleta hosi Nino — konfigura iha <code>STREAM_URL</code> script.
+  </p>
+</section>
+
+<div class="max-w-5xl mx-auto px-6">
+  <div class="flex gap-6 border-b border-amber-500/10 overflow-x-auto text-sm font-medium">
+    <button class="tab-btn active py-3 border-b-2 border-transparent text-amber-100/60 whitespace-nowrap" data-tab="beranda">
+      <i class="fa-solid fa-house mr-1.5"></i>Pájina Mestre
+    </button>
+    <button class="tab-btn py-3 border-b-2 border-transparent text-amber-100/60 whitespace-nowrap" data-tab="notisia">
+      <i class="fa-regular fa-newspaper mr-1.5"></i>Notísia
+    </button>
+    <button class="tab-btn py-3 border-b-2 border-transparent text-amber-100/60 whitespace-nowrap" data-tab="kategoria">
+      <i class="fa-solid fa-layer-group mr-1.5"></i>Kategoria
+    </button>
+    <button class="tab-btn py-3 border-b-2 border-transparent text-amber-100/60 whitespace-nowrap" data-tab="kontaktu">
+      <i class="fa-regular fa-envelope mr-1.5"></i>Kontaktu
+    </button>
+  </div>
+</div>
+
+<main class="max-w-5xl mx-auto px-6 py-10">
+
+  <div class="tab-panel active" id="panel-beranda">
+    <h2 class="font-display text-xl font-bold mb-4 text-amber-200">Notísia Foin Loron</h2>
+    <div class="grid md:grid-cols-2 gap-4" id="feed-home">
+      <div class="skeleton h-36 rounded-2xl bg-[#2a1010]"></div>
+      <div class="skeleton h-36 rounded-2xl bg-[#2a1010]"></div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="panel-notisia">
+    <div class="flex items-baseline justify-between mb-4">
+      <h2 class="font-display text-xl font-bold text-amber-200">Hotu-hotu Notísia</h2>
+      <span class="text-xs text-amber-100/40" id="count"></span>
+    </div>
+    <div class="grid md:grid-cols-2 gap-4" id="feed-all">
+      <div class="skeleton h-36 rounded-2xl bg-[#2a1010]"></div>
+      <div class="skeleton h-36 rounded-2xl bg-[#2a1010]"></div>
+      <div class="skeleton h-36 rounded-2xl bg-[#2a1010]"></div>
+      <div class="skeleton h-36 rounded-2xl bg-[#2a1010]"></div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="panel-kategoria">
+    <h2 class="font-display text-xl font-bold mb-4 text-amber-200">Kategoria</h2>
+    <div class="flex flex-wrap gap-2" id="categories-list"></div>
+  </div>
+
+  <div class="tab-panel" id="panel-kontaktu">
+    <h2 class="font-display text-xl font-bold mb-4 text-amber-200">Kontaktu Ami</h2>
+    <div class="bg-[#2a1010] border border-amber-500/10 rounded-2xl p-6 text-amber-100/70 text-sm space-y-2">
+      <p><i class="fa-solid fa-tower-broadcast mr-2 text-amber-400"></i>FM 95.8 MHz — Dili, Timor-Leste</p>
+      <p><i class="fa-solid fa-globe mr-2 text-amber-400"></i><a href="https://radioliberdadedili.com" class="text-amber-300 underline" target="_blank">radioliberdadedili.com</a> (situs orijinál)</p>
+    </div>
+  </div>
+</main>
+
+<footer class="text-center py-8 text-xs text-amber-100/40 border-t border-amber-500/10">
+  Radio Liberdade Dili — notísia direta husi WordPress oficial via REST API. Webapp prototype ida — redesign husi LaVenio.
+</footer>
+
+<script>
+const WP_API = 'https://radioliberdadedili.com/wp-json/wp/v2';
+const STREAM_URL = ''; // TODO: isi URL stream asli dari provider streaming Radio Liberdade
+
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
+  });
+});
+
+// Player (placeholder — butuh STREAM_URL asli)
+let audio = null;
+let playing = false;
+document.getElementById('play-btn').addEventListener('click', () => {
+  const icon = document.getElementById('play-icon');
+  const status = document.getElementById('player-status');
+  if (!STREAM_URL) {
+    status.textContent = 'Stream URL seidauk konfigura';
+    return;
+  }
+  if (!audio) audio = new Audio(STREAM_URL);
+  if (!playing) {
+    audio.play();
+    icon.className = 'fa-solid fa-pause';
+    status.textContent = 'Live hela dengar...';
+  } else {
+    audio.pause();
+    icon.className = 'fa-solid fa-play';
+    status.textContent = 'Pausa';
+  }
+  playing = !playing;
+});
+
+function cardHTML(p) {
+  const title = p.title.rendered;
+  const excerpt = p.excerpt.rendered.replace(/<[^>]+>/g, '').replace('[&hellip;]', '...').trim();
+  const date = new Date(p.date).toLocaleDateString('pt-PT', {day:'numeric', month:'long', year:'numeric'});
+  return `
+    <a href="${p.link}" target="_blank" class="block bg-[#2a1010] border border-amber-500/10 rounded-2xl p-5 hover:border-amber-500/40 transition">
+      <h3 class="font-display font-bold mb-2 leading-snug text-amber-100">${title}</h3>
+      <p class="text-sm text-amber-100/60">${excerpt}</p>
+      <span class="block mt-3 pt-3 border-t border-dashed border-amber-500/10 text-xs text-amber-100/40">${date}</span>
+    </a>`;
+}
+
+async function loadPosts() {
+  try {
+    const res = await fetch(`${WP_API}/posts?per_page=10&_fields=id,title,link,date,excerpt`);
+    const posts = await res.json();
+    document.getElementById('feed-home').innerHTML = posts.slice(0, 2).map(cardHTML).join('');
+    document.getElementById('feed-all').innerHTML = posts.map(cardHTML).join('');
+    document.getElementById('count').textContent = posts.length + ' notísia';
+  } catch (e) {
+    document.getElementById('feed-home').innerHTML = '<p class="text-amber-100/40">La bele hatún notísia. Sei konektadu ba radioliberdadedili.com?</p>';
+  }
+}
+
+async function loadCategories() {
+  try {
+    const res = await fetch(`${WP_API}/categories?per_page=30&_fields=id,name,count&orderby=count&order=desc`);
+    const cats = await res.json();
+    document.getElementById('categories-list').innerHTML = cats.filter(c => c.count > 0).map(c => `
+      <span class="px-4 py-2 rounded-full bg-[#2a1010] border border-amber-500/20 text-amber-200 text-sm">${c.name} <span class="text-amber-100/40">(${c.count})</span></span>
+    `).join('');
+  } catch (e) {
+    document.getElementById('categories-list').innerHTML = '<p class="text-amber-100/40">La bele hatún kategoria.</p>';
+  }
+}
+
+loadPosts();
+loadCategories();
+</script>
+
+</body>
+</html>
